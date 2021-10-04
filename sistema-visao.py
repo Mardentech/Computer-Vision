@@ -10,10 +10,6 @@ faceClassifier = cv2.CascadeClassifier(xml_haar_cascade)
 #iniciar camera
 cap = cv2.VideoCapture(0)
 
-#definimos tamanho da imagem
-#capture.set(cv2.CAP_DROP_FRAME_WIDTH, 640)
-#capture.set(cv2.CAP_DROP_FRAME_HEIGHT, 480)
-
 
 while not cv2.waitKey(20) & 0xFF == ord("q"):
 
