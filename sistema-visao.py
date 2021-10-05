@@ -19,6 +19,8 @@ def rescaleFrame(frame, scale=0.75):
 
 #iniciar camera
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1920)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
 
 while not cv2.waitKey(20) & 0xFF == ord("q"):
 
@@ -36,5 +38,4 @@ while not cv2.waitKey(20) & 0xFF == ord("q"):
     cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
     
 
-#Comentario python teste 
 
