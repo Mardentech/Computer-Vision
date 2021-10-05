@@ -23,5 +23,5 @@ while not cv2.waitKey(20) & 0xFF == ord("q"):
 
     cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
 
-
+#Comentario python teste 
 
