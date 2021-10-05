@@ -7,7 +7,7 @@ xml_haar_cascade = "haarcascade_frontalface_alt2.xml"
 #carregar classificador
 faceClassifier = cv2.CascadeClassifier(xml_haar_cascade)
 
-
+#ajuste de dimensão tela
 def rescaleFrame(frame, scale=0.75):
     width = int(frame.shape[1] * scale)
     height = int(frame.shape[0] * scale)
