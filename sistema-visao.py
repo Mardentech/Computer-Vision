@@ -7,8 +7,8 @@ xml_haar_cascade = "haarcascade_frontalface_alt2.xml"
 #carregar classificador
 faceClassifier = cv2.CascadeClassifier(xml_haar_cascade)
 
-#ajuste de dimensão tela
-def rescaleFrame(frame, scale=0.75):
+#ajuste de dimensão tela de arquivos em videos
+def rescaleFrame(frame, scale=1.2):
     width = int(frame.shape[1] * scale)
     height = int(frame.shape[0] * scale)
 
@@ -19,14 +19,18 @@ def rescaleFrame(frame, scale=0.75):
 
 #iniciar camera
 cap = cv2.VideoCapture(0)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT,1920)
-cap.set(cv2.CAP_PROP_FRAME_WIDTH,1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT,100)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH,1100)
 
 while not cv2.waitKey(20) & 0xFF == ord("q"):
-
+    
+    # frame webcam
     ret, frame_color = cap.read()
+
+    # frame arquivo de video
     ret, frame = cap.read()
     frame_resized = rescaleFrame(frame)
+   
 
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
     face = faceClassifier.detectMultiScale(gray)
