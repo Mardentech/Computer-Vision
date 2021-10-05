@@ -8,13 +8,13 @@ xml_haar_cascade = "haarcascade_frontalface_alt2.xml"
 faceClassifier = cv2.CascadeClassifier(xml_haar_cascade)
 
 #ajuste de dimensão tela de arquivos em videos
-def rescaleFrame(frame, scale=1.2):
-    width = int(frame.shape[1] * scale)
-    height = int(frame.shape[0] * scale)
+#def rescaleFrame(frame, scale=1.2):
+    #width = int(frame.shape[1] * scale)
+    #height = int(frame.shape[0] * scale)
 
-    dimensions = (width, height)
+    #dimensions = (width, height)
 
-    return cv2.resize(frame, dimensions, interpolation=cv2.INTER_AREA)
+    #return cv2.resize(frame, dimensions, interpolation=cv2.INTER_AREA)
 
 
 #iniciar camera
@@ -36,15 +36,18 @@ while not cv2.waitKey(20) & 0xFF == ord("q"):
 
     # frame arquivo de video
     ret, frame = cap.read()
-    frame_resized = rescaleFrame(frame)
+    #frame_resized = rescaleFrame(frame)
    
 
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
+    
+    #ajuste de parametros do sistema neural.
+    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150))
     face = faceClassifier.detectMultiScale(gray)
 
 
     for x, y, w, h in face:
-        cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 1)
+        cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 2)
   
     
     cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
