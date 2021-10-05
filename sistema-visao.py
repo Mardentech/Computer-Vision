@@ -23,9 +23,16 @@ cap.set(cv2.CAP_PROP_FRAME_HEIGHT,100)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,1100)
 
 while not cv2.waitKey(20) & 0xFF == ord("q"):
-    
+
+
     # frame webcam
     ret, frame_color = cap.read()
+
+    #Condição para armezenar um frame da webcam
+    k = cv2.waitKey(250)
+
+    if k == ord("s"):
+        cv2.imwrite("Pallet_Picture/wasd.png",frame_color)
 
     # frame arquivo de video
     ret, frame = cap.read()
