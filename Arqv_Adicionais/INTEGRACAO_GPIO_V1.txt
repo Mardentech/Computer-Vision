@@ -1,0 +1,19 @@
+##Link da documentação https://gpiozero.readthedocs.io/en/stable/
+//
+
+import cv2
+from gpiozero import Button,LED
+from datetime import datetime
+
+barreira = Button(17, hold_time=1)
+atuador = LED(2) ## A tensão que sai da GPIO é de 3.3v então um relé de pequeno porte vai ser necessario
+camera = cv2.VideoCapture(0) ## as três cameras devem ser declaradas futuramente
+
+def captura():
+	timestamp = datetime.now().isoformat()
+	camera.captura = cv2.imwrite("/Pallet Picture/Pallet_" + str(n) + "_%s.jpg" % timestamp, imagem) ## imagem ta errado
+	##futuramente essa função vai contar com camera.capturalateral && camera.capturasuperior também
+
+barreira.when_held = captura
+
+//

@@ -1,5 +1,5 @@
 #      TESTANDO RECONHECIMENTE FACIAL PELA WEBCAM
-
+from datetime import datetime
 import cv2
 
 xml_haar_cascade = "haarcascade_frontalface_alt2.xml"
@@ -22,7 +22,7 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT,100)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,1100)
 
-n = 0 #n é o número que vai identificar a imagem ou pallete 
+n = 1 #n é o número que vai identificar a imagem ou pallete 
 
 while not cv2.waitKey(5) & 0xFF == ord("q"):
 
@@ -32,10 +32,12 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     #Condição para armezenar um frame da webcam
     k = cv2.waitKey(5)
     
-    if k == ord("s") :   #futuramente essa condição vai ser substituida pela biblioteca i\o do raspberry com b.positiva
-        cv2.imwrite("Pallet_Picture/pallete_"+ str(n) +".png",frame_color)
+    if k == ord("s") :   #futuramente essa condição vai ser substituida pela biblioteca i\o do raspberry
+        now = datetime.now() #extrai o timestamp da máquina host
+        time = now.strftime("%Hh_%Mm_%Ss") #Horario de referencia para o programa
+        cv2.imwrite("Pallet_Picture/pallete_"+ str(n) +"_"+ time +".jpg",frame_color)
         n += 1
-    
+
     # frame arquivo de video
     ret, frame = cap.read()
     #frame_resized = rescaleFrame(frame)
@@ -53,6 +55,5 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
   
     
     cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
-    
-
+    cv2.imshow("Gray",gray)   
 
