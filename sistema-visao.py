@@ -46,8 +46,8 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
     
     #ajuste de parametros do sistema neural.
-    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150))
-    face = faceClassifier.detectMultiScale(gray)
+    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=1)
+  
 
 
     for x, y, w, h in face:
