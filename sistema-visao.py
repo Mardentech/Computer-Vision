@@ -22,18 +22,20 @@ cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT,100)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,1100)
 
-while not cv2.waitKey(20) & 0xFF == ord("q"):
+n = 0 #n é o número que vai identificar a imagem ou pallete 
 
+while not cv2.waitKey(5) & 0xFF == ord("q"):
 
     # frame webcam
     ret, frame_color = cap.read()
 
     #Condição para armezenar um frame da webcam
-    k = cv2.waitKey(250)
-
-    if k == ord("s"):
-        cv2.imwrite("Pallet_Picture/wasd.png",frame_color)
-
+    k = cv2.waitKey(5)
+    
+    if k == ord("s") :   #futuramente essa condição vai ser substituida pela biblioteca i\o do raspberry com b.positiva
+        cv2.imwrite("Pallet_Picture/pallete_"+ str(n) +".png",frame_color)
+        n += 1
+    
     # frame arquivo de video
     ret, frame = cap.read()
     frame_resized = rescaleFrame(frame)
