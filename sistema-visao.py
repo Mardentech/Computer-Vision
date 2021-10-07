@@ -40,7 +40,7 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
     edge = cv2.Canny(blur, 125, 175) #os paramentros 125 e 175 de forma simplificada são a sensibilidade para detectar bordas
     contours, hierarchies = cv2.findContours(edge, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
-    ret, thresh =cv2.threshold(gray,100,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
+    ret, thresh =cv2.threshold(gray,135,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
     cv2.drawContours (contornos,contours,-1,(0,255,0),1)
 
     #ajuste de parametros do sistema neural.
