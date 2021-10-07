@@ -43,8 +43,8 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     #frame_resized = rescaleFrame(frame)
 
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(frame_color, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
-    edge = cv2.Canny(frame_color, 125, 175) #a imagem frame_color vai ser substituida por blur futuramente após testes
+    blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
+    edge = cv2.Canny(blur, 125, 175) #a imagem frame_color vai ser substituida por blur futuramente após testes
     
     #ajuste de parametros do sistema neural.
     face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=1)
@@ -55,6 +55,8 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
         cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 2)
   
     
-    #cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
+    cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
+
+    cv2.imshow("gray",gray) 
     cv2.imshow("edge",edge)   
 
