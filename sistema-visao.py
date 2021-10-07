@@ -44,19 +44,12 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     cv2.drawContours (contornos,contours,-1,(0,255,0),1)
 
     #ajuste de parametros do sistema neural.
-    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=1)
+    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=4)
   
     for x, y, w, h in face:
         cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 2)
     
-<<<<<<< HEAD
     cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
-    #cv2.imshow("edge",edge)   
 
-=======
-    #cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
-    #cv2.imshow("gray",gray) 
-    cv2.imshow("edge",edge)   
-    cv2.imshow("thresh",thresh)
-    cv2.imshow("contornos",contornos)
->>>>>>> c83c56d77f37607d25b956d36f061baf1997f68a
+    #cv2.imshow("edge",edge)   
+    #cv2.imshow("Gray",gray)   
