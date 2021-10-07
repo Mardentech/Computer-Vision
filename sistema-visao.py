@@ -3,27 +3,15 @@ from datetime import datetime
 import numpy
 import cv2
 
-
 xml_haar_cascade = "haarcascade_frontalface_alt2.xml"
 
 #carregar classificador
 faceClassifier = cv2.CascadeClassifier(xml_haar_cascade)
 
-#ajuste de dimensão tela de arquivos em videos
-#def rescaleFrame(frame, scale=1.2):
-    #width = int(frame.shape[1] * scale)
-    #height = int(frame.shape[0] * scale)
-
-    #dimensions = (width, height)
-
-    #return cv2.resize(frame, dimensions, interpolation=cv2.INTER_AREA)
-
 #iniciar camera
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT,100)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH,1100)
-
-
 
 n = 1 #n é o número que vai identificar a imagem ou pallete 
 
@@ -58,11 +46,8 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     #ajuste de parametros do sistema neural.
     face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=1)
   
-
-
     for x, y, w, h in face:
         cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 2)
-  
     
     #cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
     #cv2.imshow("gray",gray) 
