@@ -39,8 +39,8 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
     edge = cv2.Canny(blur, 125, 175) #os paramentros 125 e 175 de forma simplificada são a sensibilidade para detectar bordas
-    contours, hierarchies = cv2.findContours(edge, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
-    ret, thresh =cv2.threshold(gray,135,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
+    ret, thresh =cv2.threshold(blur,120,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
+    contours, hierarchies = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours (contornos,contours,-1,(0,255,0),1)
 
     #ajuste de parametros do sistema neural.
@@ -49,7 +49,7 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     for x, y, w, h in face:
         cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 2)
     
-    cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
-
-    #cv2.imshow("edge",edge)   
-    #cv2.imshow("Gray",gray)   
+    #cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
+    #cv2.imshow("edge",edge)
+    cv2.imshow("thresh",thresh)
+    cv2.imshow("wasd",contornos)   
