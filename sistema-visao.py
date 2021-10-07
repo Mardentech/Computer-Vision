@@ -46,7 +46,7 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
     
     #ajuste de parametros do sistema neural.
-    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=1)
+    face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=4)
   
 
 
@@ -55,5 +55,5 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
   
     
     cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
-    cv2.imshow("Gray",gray)   
+    #cv2.imshow("Gray",gray)   
 
