@@ -55,6 +55,6 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
         cv2.rectangle(frame_color, (x, y),  (x + w, y + h), (0, 255, 0), 2)
   
     
-    #cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
-    cv2.imshow("edge",edge)   
+    cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
+    #cv2.imshow("edge",edge)   
 
