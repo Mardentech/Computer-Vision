@@ -38,11 +38,13 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
 
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
-    edge = cv2.Canny(blur, 125, 175) #os paramentros 125 e 175 de forma simplificada são a sensibilidade para detectar bordas
-    ret, thresh =cv2.threshold(blur,120,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
-    contours, hierarchies = cv2.findContours(thresh, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-    cv2.drawContours (contornos,contours,-1,(0,255,0),1)
+    #edge = cv2.Canny(blur, 125, 175) #os paramentros 125 e 175 de forma simplificada são a sensibilidade para detectar bordas
+    ret, thresh =cv2.threshold(blur,125,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
+    contours, hierarchies = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
 
+    cv2.drawContours (contornos,contours,-1,(0,255,0),1)
+    #cv2.drawContours (frame_color,contours,-1,(0,255,0),1)
+    
     #ajuste de parametros do sistema neural.
     face = faceClassifier.detectMultiScale(gray, scaleFactor=1.5, minSize=(150, 150), minNeighbors=4)
   
@@ -52,4 +54,4 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     #cv2.imshow("Reconhecimento Facial - ITF AUTOMACAO AMBEV", frame_color)
     #cv2.imshow("edge",edge)
     cv2.imshow("thresh",thresh)
-    cv2.imshow("wasd",contornos)   
+    cv2.imshow("contornos",contornos)   
