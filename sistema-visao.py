@@ -37,7 +37,8 @@ while not cv2.waitKey(5) & 0xFF == ord("q"):
     #frame_resized = rescaleFrame(frame)
 
     gray = cv2.cvtColor(frame_color, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
+    #blur = cv2.GaussianBlur(gray, (3,3), cv2.BORDER_DEFAULT) #blur serve para diminuir o ruído de luz da imagem
+    blur = cv2.bilateralFilter(gray, 5,15,15)
     #edge = cv2.Canny(blur, 125, 175) #os paramentros 125 e 175 de forma simplificada são a sensibilidade para detectar bordas
     ret, thresh =cv2.threshold(blur,125,255,cv2.THRESH_BINARY) #os parametros precisam ser ajustados
     contours, hierarchies = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
